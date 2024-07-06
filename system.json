@@ -11,5 +11,5 @@
   "socket": false,
   "initiative": "1d20",
   "primaryTokenAttribute": "resources.health",
-  "download": "https://github.com/F3lixitas/DnD3.5e-foundry/releases/release1.0.0/release.zip"
+  "download": "https://github.com/F3lixitas/DnD3.5e-foundry/releases/download/release/release.zip"
 }

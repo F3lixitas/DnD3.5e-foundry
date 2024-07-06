@@ -1,6 +1,6 @@
 {
   "id": "DnD35e",
-  "title": "A DnD3.5e system for friends",
+  "title": "Dungeon & Dragons 3.5e",
   "description": "Custom implementation of the DnD 3.5e in Foundry",
   "version": "1.0.0",
   "compatibility": {
@@ -8,8 +8,34 @@
     "verified": 12
   },
   "styles": ["styles/system-styles.css"],
+  "esmodules": ["dnd35.mjs"],
   "socket": false,
   "initiative": "1d20",
-  "primaryTokenAttribute": "resources.health",
+  "primaryTokenAttribute": "attribute.health",
+  "packs": [
+    {
+      "name": "items",
+      "label": "Items",
+      "type": "Item"
+    }, {
+      "name": "monsters",
+      "label": "Monsters",
+      "type": "Monster"
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "Character": {
+        "htmlFields": ["bibliography"],
+        "filePathFields": {
+          "crest": ["IMAGE"]
+        }
+      }
+    }
+  },
+  "grid": {
+    "distance": 1.5,
+    "units": "m"
+  },
   "download": "https://github.com/F3lixitas/DnD3.5e-foundry/releases/download/release/release.zip"
 }

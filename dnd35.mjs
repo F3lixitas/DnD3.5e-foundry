@@ -1,48 +1,35 @@
-const {
-    HTMLField, SchemaField, NumberField, StringField, FilePathField, ArrayField
-} = foundry.data.fields;
+import {SystemActor} from "./module/actor/entity.mjs";
+// import {SystemItem} from "./module/item/entity.mjs";
+import {CharacterData} from "./module/data/character.mjs";
+import {DnD35eActorSheet} from "./module/sheets/DnD35eActorSheet.mjs";
+import {DND35E} from "./module/helpers/config.mjs";
+// import {preloadHandlebarsTemplates} from "./module/helpers/templates.mjs";
 
-class CharacterData extends foundry.abstract.TypeDataModel {
-    static defineSchema() {
-        return {
-            biography: new HTMLField(),
-            health: new SchemaField({
-                value: new NumberField({ required: true, integer: true, min: 0, initial: 10 }),
-                min: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
-                max: new NumberField({ required: true, integer: true, min: 0, initial: 10 })
-            }),
-            proficiencies: new SchemaField({
-                weapons: new ArrayField(new StringField()),
-                skills: new ArrayField(new StringField())
-            }),
-            crest: new FilePathField({ required: false, categories: ["IMAGE"] }),
-            xp: new NumberField({ required: true, integer: true, min: 0, initial: 0 })
-        };
+
+Hooks.once("init", () => {
+    game.DnD35e = {
+        SystemActor
     }
 
-    get dead() {
-        const invulnerable = CONFIG.specialStatusEffects.INVULNERABLE;
-        if ( this.parent.statuses.has("invulnerable") ) return false;
-        return this.health.value <= this.health.min;
+    CONFIG.DND35E = DND35E;
+
+    CONFIG.Actor.documentClass = SystemActor;
+
+
+    CONFIG.Combat.initiative = {
+        formula:'1d20 + @abilities.dex.mod',
+        decimals: 2
     }
 
-    prepareDerivedData() {
-        super.prepareDerivedData();
-
-        // Make sure HP cannot exceed its maximum.
-        this.health.value = Math.min(this.health.value, this.health.max);
-
-        // Derive level from XP.
-        this.level = Math.floor(this.xp / 100);
-    }
-}
-
-Hooks.on("init", () => {
-    CONFIG.Actor.dataModels.character = CharacterData;
-    CONFIG.Actor.trackableAttributes = {
-        character: {
-            bar: ["health"],
-            value: ["xp"]
-        }
+    CONFIG.Actor.dataModels = {
+        character: CharacterData
     };
+
+    Actors.unregisterSheet('core', ActorSheet);
+    Actors.registerSheet('DnD35e', DnD35eActorSheet, {
+        makeDefault: true,
+        label: 'DND35E.SheetLabels.Actor',
+    });
+
+    // return preloadHandlebarsTemplates();
 });

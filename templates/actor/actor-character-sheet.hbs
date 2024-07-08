@@ -1,0 +1,49 @@
+<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+    <header class="sheet-header">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+    </header>
+    <h1>Character sheet</h1>
+    <aside class="sidebar">
+        <div class="abilities flexcol">
+            {{#each system.abilities as |ability key|}}
+                <div class="ability flexrow flex-group-center">
+                    <label for="system.abilities.{{key}}.value" class="resource-label rollable flexlarge align-left" data-roll="d20+@abilities.{{key}}.mod" data-label="{{localize (lookup @root.config.abilities key)}}">{{localize (lookup @root.config.abilities key)}}</label>
+                    <input type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
+                    <span class="ability-mod rollable" data-roll="d20+@abilities.{{key}}.mod" data-label="{{localize (lookup @root.config.abilities key)}}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
+                </div>
+            {{/each}}
+        </div>
+    </aside>
+    <div class="tab-section">
+
+        <nav class="sheet-tabs tabs" data-group="primary">
+            <a class="item" data-tab="general">{{localize (lookup @root.config.tabnames general)}}</a>
+            <a class="item" data-tab="skills">{{localize (lookup @root.config.tabnames skills)}}</a>
+            <a class="item" data-tab="spells">{{localize (lookup @root.config.tabnames spells)}}</a>
+            <a class="item" data-tab="equipment">{{localize (lookup @root.config.tabnames equipment)}}</a>
+            <a class="item" data-tab="inventory">{{localize (lookup @root.config.tabnames inventory)}}</a>
+            <a class="item" data-tab="description">{{localize (lookup @root.config.tabnames description)}}</a>
+        </nav>
+
+        <section class="sheet-body">
+            <div class="tab general" data-group="primary" data-tab="general">
+                General
+            </div>
+            <div class="tab skills" data-group="primary" data-tab="skills">
+                Skills
+            </div>
+            <div class="tab spells" data-group="primary" data-tab="spells">
+                Spells
+            </div>
+            <div class="tab equipment" data-group="primary" data-tab="equipment">
+                Equipment
+            </div>
+            <div class="tab inventory" data-group="primary" data-tab="inventory">
+                Inventory
+            </div>
+            <div class="tab description" data-group="primary" data-tab="description">
+                Description
+            </div>
+        </section>
+    </div>
+</form>

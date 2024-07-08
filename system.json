@@ -10,32 +10,22 @@
   "styles": ["styles/system-styles.css"],
   "esmodules": ["dnd35.mjs"],
   "socket": false,
-  "initiative": "1d20",
-  "primaryTokenAttribute": "attribute.health",
-  "packs": [
-    {
-      "name": "items",
-      "label": "Items",
-      "type": "Item"
-    }, {
-      "name": "monsters",
-      "label": "Monsters",
-      "type": "Monster"
-    }
-  ],
-  "documentTypes": {
-    "Actor": {
-      "Character": {
-        "htmlFields": ["bibliography"],
-        "filePathFields": {
-          "crest": ["IMAGE"]
-        }
-      }
-    }
-  },
   "grid": {
     "distance": 1.5,
     "units": "m"
   },
-  "download": "https://github.com/F3lixitas/DnD3.5e-foundry/releases/download/release/release.zip"
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "French",
+      "path": "lang/fr.json"
+    }
+  ],
+  "download": "https://github.com/F3lixitas/DnD3.5e-foundry/releases/download/release/release.zip",
+  "manifest": "https://github.com/F3lixitas/DnD3.5e-foundry/releases/download/release/system.json"
 }

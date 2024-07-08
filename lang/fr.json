@@ -1,0 +1,32 @@
+{
+  "DND35E": {
+    "Ability": {
+      "Str": { "long": "Force", "abbr": "for" },
+      "Con": { "long": "Constitution", "abbr": "con" },
+      "Dex": { "long": "Dextérité", "abbr": "dex" },
+      "Int": { "long": "Intelligence", "abbr": "int" },
+      "Wis": { "long": "Sagesse", "abbr": "sag" },
+      "Cha": { "long": "Charisme", "abbr": "cha" }
+    },
+    "SheetLabels": {
+      "Actor": "Feuille de personnages"
+    },
+    "TabName": {
+      "General": "Général",
+      "Skills": "Compétences",
+      "Spells": "Sorts",
+      "Equipment": "Équipement",
+      "Inventory": "Inventaire",
+      "Description": "Description"
+    }
+  },
+
+  "TYPES": {
+    "Actor": {
+      "character": "Personnage"
+    },
+    "Item": {
+      "weapon": "Arme"
+    }
+  }
+}

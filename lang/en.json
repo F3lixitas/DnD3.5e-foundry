@@ -18,7 +18,19 @@
       "Equipment": "Equipment",
       "Inventory": "Inventory",
       "Description": "Description"
-    }
+    },
+    "SheetName": "Character Record Sheet",
+    "AbilityLabel": {
+      "AbilityName": "Ability Name",
+      "AbilityScore": "Ability Score",
+      "AbilityModifier": "Ability Modifier"
+    },
+    "CharacterName": "Character Name",
+    "Player": "Player",
+    "ClassAndLevel": "Class And Level",
+    "Race": "Race",
+    "Alignment": "Alignment",
+    "Deity": "Deity"
   },
 
   "TYPES": {

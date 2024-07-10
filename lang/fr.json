@@ -9,7 +9,7 @@
       "Cha": { "long": "Charisme", "abbr": "cha" }
     },
     "SheetLabels": {
-      "Actor": "Feuille de personnages"
+      "Actor": "Feuille de personnage"
     },
     "TabName": {
       "General": "Général",
@@ -18,7 +18,19 @@
       "Equipment": "Équipement",
       "Inventory": "Inventaire",
       "Description": "Description"
-    }
+    },
+    "SheetName": "Feuille De Personnage",
+    "AbilityLabel": {
+      "AbilityName": "Caractéristiques",
+      "AbilityScore": "Score",
+      "AbilityModifier": "Modif."
+    },
+    "CharacterName": "Nom Du Personnage",
+    "Player": "Joueur",
+    "ClassAndLevel": "Classe et Niveau",
+    "Race": "Race",
+    "Alignment": "Alignement",
+    "Deity": "Divinité"
   },
 
   "TYPES": {

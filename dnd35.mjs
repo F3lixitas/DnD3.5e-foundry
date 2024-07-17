@@ -33,3 +33,10 @@ Hooks.once("init", () => {
 
     // return preloadHandlebarsTemplates();
 });
+
+Handlebars.registerHelper('toLowerCase', function (str) {
+    return str.toLowerCase();
+});
+Handlebars.registerHelper('toUpperCase', function (str) {
+    return str.toUpperCase();
+});

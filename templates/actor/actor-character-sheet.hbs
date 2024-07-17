@@ -1,49 +1,158 @@
-<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+<form class="{{cssClass}} {{actor.type}} flexcol main-sheet" autocomplete="off">
     <header class="sheet-header">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
-    </header>
-    <h1>Character sheet</h1>
-    <aside class="sidebar">
-        <div class="abilities flexcol">
-            {{#each system.abilities as |ability key|}}
-                <div class="ability flexrow flex-group-center">
-                    <label for="system.abilities.{{key}}.value" class="resource-label rollable flexlarge align-left" data-roll="d20+@abilities.{{key}}.mod" data-label="{{localize (lookup @root.config.abilities key)}}">{{localize (lookup @root.config.abilities key)}}</label>
-                    <input type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
-                    <span class="ability-mod rollable" data-roll="d20+@abilities.{{key}}.mod" data-label="{{localize (lookup @root.config.abilities key)}}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
+        <div>
+            <div class="fields-row-1">
+                <div style="width: 50%; flex: 0 auto">
+                    <input class="text-field" type="text" name="name" value="{{actor.name}}" />
+                    <label class="text-field-label">{{toUpperCase (localize 'DND35E.CharacterName')}}</label>
                 </div>
-            {{/each}}
+                <div style="width: 5px"></div>
+                <div style="flex: 1 1 auto">
+                    <input class="text-field" type="text" name="system.playername" />
+                    <label class="text-field-label">{{toUpperCase (localize 'DND35E.Player')}}</label>
+                </div>
+
+            </div>
+            <div class="fields-row-1">
+                <div style="width: 50%; flex: 0 auto">
+                    <div class="text-field"></div>
+                    <label class="text-field-label">{{toUpperCase (localize 'DND35E.ClassAndLevel')}}</label>
+                </div>
+                <div style="width: 5px"></div>
+                <div style="flex: 1 1 auto">
+                    <div class="text-field"></div>
+                    <label class="text-field-label">{{toUpperCase (localize 'DND35E.Race')}}</label>
+                </div>
+                <div style="width: 5px"></div>
+                <div style="max-width: 16%">
+                    <input class="text-field" type="text" name="system.alignment" />
+                    <label class="text-field-label">{{toUpperCase (localize 'DND35E.Alignment')}}</label>
+                </div>
+                <div style="width: 5px"></div>
+                <div style="max-width: 16%">
+                    <input class="text-field" type="text" name="system.deity" />
+                    <label class="text-field-label">{{toUpperCase (localize 'DND35E.Deity')}}</label>
+                </div>
+
+            </div>
         </div>
-    </aside>
-    <div class="tab-section">
+        <div class="logo-section">
+            <img class="dnd-logo" src="systems/Dnd35e/assets/dnd_logo.png" title="logo"/>
+            <label>
+                {{toUpperCase (localize 'DND35E.SheetName')}}
+            </label>
+        </div>
 
-        <nav class="sheet-tabs tabs" data-group="primary">
-            <a class="item" data-tab="general">{{localize 'DND35E.TabName.General'}}</a>
-            <a class="item" data-tab="skills">{{localize 'DND35E.TabName.Skills'}}</a>
-            <a class="item" data-tab="spells">{{localize 'DND35E.TabName.Spells'}}</a>
-            <a class="item" data-tab="equipment">{{localize 'DND35E.TabName.Equipment'}}</a>
-            <a class="item" data-tab="inventory">{{localize 'DND35E.TabName.Inventory'}}</a>
-            <a class="item" data-tab="description">{{localize 'DND35E.TabName.Description'}}</a>
-        </nav>
+    </header>
+    <div class="main-region">
+        <aside class="sidebar">
+            <div>
+                <div style="display: flex">
+                    <div style="width: 94px; flex: none">
 
-        <section class="sheet-body">
-            <div class="tab general" data-group="primary" data-tab="general">
-                General
+                    </div>
+                    <label style="flex: none;font-size: 65%;margin: 0; width: 60px; align-items: center;display: flex; align-content: center; justify-content: center;text-align: center">
+                        {{toUpperCase (localize 'DND35E.InitiativeLabel.Total')}}
+                    </label>
+                    <label style="flex: none;font-size: 65%;margin: 0; width: 60px; align-items: center;display: flex; align-content: center; justify-content: center;text-align: center">
+                        {{toUpperCase (localize 'DND35E.InitiativeLabel.DexModifier')}}
+                    </label>
+                    <label style="flex: none;font-size: 65%;margin: 0; width: 55px; align-items: center;display: flex; align-content: center; justify-content: center;text-align: center">
+                        {{toUpperCase (localize 'DND35E.InitiativeLabel.MiscModifier')}}
+                    </label>
+                    <label style="font-size: 65%;margin: 0;align-items: center;display: flex; align-content: center; justify-content: center;text-align: center; flex: auto">
+                        {{toUpperCase 'Exp'}}
+                    </label>
+
+                </div>
+                <div style="display: flex; align-content: center; justify-content: center;align-items: center;">
+                    <div class="initiative-label initiative" data-roll="initiative">
+                        <label class="ability-abbr">{{toUpperCase 'Initiative'}}</label>
+                    </div>
+                    <span class="value-square ability-mod initiative" data-roll="initiative">{{numberFormat system.abilities.dex.mod decimals=0}}</span>
+                    <div style="flex: none">
+                        =
+                    </div>
+                    <span class="value-square ability-mod">{{numberFormat system.abilities.dex.mod decimals=0}}</span>
+                    <div style="flex: none">
+                        +
+                    </div>
+                    <span class="value-square ability-mod">0</span>
+                    <div style="flex: none; width: 10px;"></div>
+                    <input class="exp-field" type="text" name="system.exp" />
+                </div>
             </div>
-            <div class="tab skills" data-group="primary" data-tab="skills">
-                Skills
+
+            <div class="abilities flexcol">
+                <div class="ability flexrow flex-group-center">
+                    <label class="ability-label-name">
+                        {{toUpperCase (localize 'DND35E.AbilityLabel.AbilityName')}}
+                    </label>
+                    <label class="ability-label-score">
+                        {{toUpperCase (localize 'DND35E.AbilityLabel.AbilityScore')}}
+                    </label>
+                    <label class="ability-label-modif">
+                        {{toUpperCase (localize 'DND35E.AbilityLabel.AbilityModifier')}}
+                    </label>
+                    <label class="ability-label-tempscore">
+                        {{toUpperCase (localize 'DND35E.AbilityLabel.TempScore')}}
+                    </label>
+                    <label class="ability-label-tempmodif">
+                        {{toUpperCase (localize 'DND35E.AbilityLabel.TempModif')}}
+                    </label>
+                </div>
+                {{#each system.abilities as |ability key|}}
+                    <div class="ability flexrow flex-group-center">
+                        <div class="ability-label rollable" data-roll="d20+@abilities.{{key}}.mod">
+                            <label for="system.abilities.{{key}}.value" class="ability-abbr" data-label="{{localize (lookup @root.config.abilityAbbreviations key)}}">{{toUpperCase (localize (lookup @root.config.abilityAbbreviations key))}}</label>
+                            <br>
+                            <label for="system.abilities.{{key}}.value" class="ability-long resource-label flexlarge align-center" data-label="{{localize (lookup @root.config.abilities key)}}">{{toUpperCase (localize (lookup @root.config.abilities key))}}</label>
+                        </div>
+                        <input class="value-square" type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
+                        <span class="value-square ability-mod rollable" data-roll="d20+@abilities.{{key}}.mod" data-label="{{localize (lookup @root.config.abilities key)}}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
+                        <div class="temporary-ability">
+                            <span class="value-square ability-mod rollable" data-roll="d20+@abilities.{{key}}.mod" data-label="{{localize (lookup @root.config.abilities key)}}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
+                            <div style="width: 10px; flex: none"></div>
+                            <span class="value-square ability-mod rollable" data-roll="d20+@abilities.{{key}}.mod" data-label="{{localize (lookup @root.config.abilities key)}}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
+                        </div>
+                    </div>
+                {{/each}}
             </div>
-            <div class="tab spells" data-group="primary" data-tab="spells">
-                Spells
-            </div>
-            <div class="tab equipment" data-group="primary" data-tab="equipment">
-                Equipment
-            </div>
-            <div class="tab inventory" data-group="primary" data-tab="inventory">
-                Inventory
-            </div>
-            <div class="tab description" data-group="primary" data-tab="description">
-                Description
-            </div>
-        </section>
+        </aside>
+        <div style="flex: none; width: 1px; border-right: solid black 1px; margin-left: 5px; margin-right: 5px"></div>
+        <div class="tab-section">
+
+            <nav class="sheet-tabs tabs text-field-label" data-group="primary">
+                <a class="item" data-tab="general">{{toUpperCase (localize 'DND35E.TabName.General')}}</a>
+                <a class="item" data-tab="skills">{{toUpperCase (localize 'DND35E.TabName.Skills')}}</a>
+                <a class="item" data-tab="spells">{{toUpperCase (localize 'DND35E.TabName.Spells')}}</a>
+                <a class="item" data-tab="equipment">{{toUpperCase (localize 'DND35E.TabName.Equipment')}}</a>
+                <a class="item" data-tab="inventory">{{toUpperCase (localize 'DND35E.TabName.Inventory')}}</a>
+                <a class="item" data-tab="description">{{toUpperCase (localize 'DND35E.TabName.Description')}}</a>
+            </nav>
+
+            <section class="sheet-body">
+                <div class="tab general" data-group="primary" data-tab="general">
+                    General
+                </div>
+                <div class="tab skills" data-group="primary" data-tab="skills">
+                    Skills
+                </div>
+                <div class="tab spells" data-group="primary" data-tab="spells">
+                    Spells
+                </div>
+                <div class="tab equipment" data-group="primary" data-tab="equipment">
+                    Equipment
+                </div>
+                <div class="tab inventory" data-group="primary" data-tab="inventory">
+                    Inventory
+                </div>
+                <div class="tab description" data-group="primary" data-tab="description">
+                    Description
+                </div>
+            </section>
+        </div>
     </div>
+
+
 </form>

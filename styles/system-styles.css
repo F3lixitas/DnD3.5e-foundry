@@ -97,7 +97,7 @@
 }
 
 .dnd35e .sidebar {
-    width: 200px;
+    width: 350px;
     flex: none;
     margin-left: 0;
     padding-left: 0;
@@ -124,6 +124,19 @@
     flex: none;
 }
 
+.dnd35e .initiative-label {
+    color: white;
+    background-color: black;
+    width: 100px;
+    height: 40px;
+    margin: 1px 2px 1px 0;
+    flex: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    text-align: center;
+}
+
 .dnd35e .ability-label-name {
     width: 90px;
     margin: 1px 2px 1px 2px;
@@ -132,14 +145,28 @@
 }
 
 .dnd35e .ability-label-score {
-    width: 40px;
+    width: 45px;
     margin: 1px 2px 1px 2px;
     flex: none;
     font-size: 65%;
 }
 
 .dnd35e .ability-label-modif {
-    width: 40px;
+    width: 45px;
+    margin: 1px 2px 1px 2px;
+    flex: none;
+    font-size: 65%;
+}
+
+.dnd35e .ability-label-tempscore {
+    width: 55px;
+    margin: 1px 2px 1px 2px;
+    flex: none;
+    font-size: 65%;
+}
+
+.dnd35e .ability-label-tempmodif {
+    width: 55px;
     margin: 1px 2px 1px 2px;
     flex: none;
     font-size: 65%;
@@ -147,11 +174,11 @@
 
 .dnd35e .value-square {
     flex: none;
-    background: none;
+    background: white none;
     border-radius: 0;
     border: solid black 1px;
-    width: 34px;
-    height: 30px;
+    width: 40px;
+    height: 33px;
     margin: 1px 5px 1px 5px;
     display: flex;
     justify-content: center;
@@ -169,6 +196,17 @@
 
 .dnd35e .ability-long {
     font-size: 80%;
+}
+
+.dnd35e .temporary-ability {
+    display: flex;
+    padding: 2px;
+    margin-left: 2px;
+    background-color: #A0A0A0;
+    flex: none;
+    margin-bottom: 0;
+    margin-top: 0;
+    height: 42px;
 }
 
 .dnd35e .sheet-header .logo-section {
@@ -196,6 +234,18 @@
     background: none;
 }
 
+.dnd35e .exp-field {
+    background: white none;
+    border-radius: 0;
+    border: solid black 1px;
+    height: 33px;
+    margin: 1px 2px 1px 2px;
+}
+
+.dnd35e .text-field-label {
+    font-size: 80%;
+}
+
 .dnd35e .sheet-header .fields-row-1 {
     flex: 0 auto;
     display: flex;
@@ -207,11 +257,39 @@
     padding-left: 0;
 }
 
-.dnd35e .sheet-tabs {
-    width: 100%;
+.sheet nav.sheet-tabs {
+    border: none;
+    border-top: solid black 1px;
+}
 
+.sheet a {
+    border-bottom: solid white 1px;
+}
+
+.sheet a:hover {
+    text-shadow: none;
+    border-bottom: solid gray 1px;
+}
+
+.sheet a:active {
+    text-shadow: none;
+    border-bottom: solid black 1px;
+}
+
+.dnd35e .sheet-tabs {
+    border: none;
+    width: 100%;
+    flex: 1 1 auto;
+    border-top: solid black 5px;
 }
 
 .dnd35e .tabs {
+    width: 100%;
+    flex: 1 1 auto;
+    border-top: solid black 5px;
+}
+
+.dnd35e .tab-section {
+    flex: 1 1 auto;
     width: 100%;
 }

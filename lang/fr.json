@@ -23,7 +23,14 @@
     "AbilityLabel": {
       "AbilityName": "Caractéristiques",
       "AbilityScore": "Score",
-      "AbilityModifier": "Modif."
+      "AbilityModifier": "Modif.",
+      "TempScore": "Score Temporaire",
+      "TempModif": "Modif. Temporaire"
+    },
+    "InitiativeLabel": {
+      "Total": "Total",
+      "DexModifier": "Mod. De Dex",
+      "MiscModifier": "Mod. Divers"
     },
     "CharacterName": "Nom Du Personnage",
     "Player": "Joueur",

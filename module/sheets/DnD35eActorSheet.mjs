@@ -4,7 +4,7 @@ export class DnD35eActorSheet extends ActorSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ['dnd35e', 'actor', 'sheet'],
-            width: 600,
+            width: 1000,
             height: 600,
             tabs: [
                 {
@@ -59,6 +59,12 @@ export class DnD35eActorSheet extends ActorSheet {
         super.activateListeners(html);
 
         html.on('click', '.rollable', this._onRoll.bind(this));
+        html.on('click', '.initiative', this._onInitiative.bind(this));
+    }
+
+    _onInitiative(event) {
+        event.preventDefault();
+        this.actor.rollInitiative({createCombatants: true, rerollInitiative: true});
     }
 
     _onRoll(event) {

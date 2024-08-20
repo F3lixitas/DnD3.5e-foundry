@@ -37,7 +37,33 @@
     "ClassAndLevel": "Classe et Niveau",
     "Race": "Race",
     "Alignment": "Alignement",
-    "Deity": "Divinité"
+    "Deity": "Divinité",
+    "Size": "Catégorie de Taille",
+    "Age": "Age",
+    "Gender": "Genre",
+    "Height": "Taille",
+    "Weight": "Poids",
+    "Eyes": "Yeux",
+    "Hair": "Cheveux",
+    "Skin": "Peau",
+    "AlignmentValues": {
+      "ChaoticEvil": "Chaotique-Mauvais",
+      "ChaoticNeutral": "Chaotique-Neutre",
+      "ChaoticGood": "Chaotique-Bon",
+      "NeutralEvil": "Neutre-Mauvais",
+      "Neutral": "Neutre",
+      "NeutralGood": "Neutre-Bon",
+      "LawfulEvil": "Loyal-Mauvais",
+      "LawfulNeutral": "Loyal-Neutre",
+      "LawfulGood": "Loyal-Bon"
+    },
+    "SkillNames": {
+      "Appraise": "Estimation",
+      "Balance": "Équilibre",
+      "Bluff": "Bluff",
+      "Climb": "Escalade",
+      "Concentration": "Concentration"
+    }
   },
 
   "TYPES": {

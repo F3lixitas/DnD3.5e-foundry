@@ -1,7 +1,7 @@
 import {ActorData} from "./actor.mjs";
 
 const {
-    NumberField, SchemaField
+    NumberField, SchemaField, StringField, BooleanField,
 } = foundry.data.fields;
 
 const exp_threshold_table = [
@@ -32,9 +32,21 @@ export class CharacterData extends ActorData {
         const schema = super.defineSchema();
         schema.xp = new NumberField({ required: true, integer: true, min: 0, initial: 0 });
         schema.level = new NumberField({required: true, integer: true, min: 1, initial: 1});
+        schema.player = new StringField({required: true, initial: ""});
+        schema.alignment = new SchemaField({
+            goodness: new NumberField({required: true, integer: true, min: 0, max: 2, initial: 1}),
+            lawfulness: new NumberField({required: true, integer: true, min: 0, max: 2, initial: 1})
+        })
         schema.abilities = new SchemaField(Object.keys(CONFIG.DND35E.abilities).reduce((obj, ability) => {
             obj[ability] = new SchemaField({
                 value: new NumberField({ required: true, integer: true, initial: 10, min: 0 }),
+                temp: new NumberField({ required: true, integer: true, initial: 10, min: 0 }),
+            });
+            return obj;
+        }, {}));
+        schema.skills = new SchemaField(Object.keys(CONFIG.DND35E.skills).reduce((obj, skill) => {
+            obj[skill] = new SchemaField({
+                classSkill: new BooleanField({required: true, initial: false}),
             });
             return obj;
         }, {}));
@@ -57,9 +69,10 @@ export class CharacterData extends ActorData {
 
         for(const key in this.abilities) {
             this.abilities[key].mod = Math.floor((this.abilities[key].value - 10) / 2);
+            this.abilities[key].temp = this.abilities[key].value;
+            this.abilities[key].temp_mod = Math.floor((this.abilities[key].temp - 10) / 2);
             this.abilities[key].label = game.i18n.localize(CONFIG.DND35E.abilities[key]) ?? key;
         }
-
     }
 
     getRollData() {
@@ -77,4 +90,6 @@ export class CharacterData extends ActorData {
 
         return data
     }
+
+
 }

@@ -26,3 +26,68 @@ DND35E.tabnames = {
     inventory: 'DND35E.TabName.Inventory',
     description: 'DND35E.TabName.Description'
 };
+
+DND35E.skillNames = {
+    appraise: 'DND35E.SkillNames.Appraise',
+    balance: 'DND35E.SkillNames.Balance',
+    bluff: 'DND35E.SkillNames.Bluff',
+    climb: 'DND35E.SkillNames.Climb',
+    concentration: 'DND35E.SkillNames.Concentration',
+}
+
+DND35E.skillAbilities = {
+    appraise: DND35E.abilityAbbreviations.int,
+    balance: DND35E.abilityAbbreviations.dex,
+    bluff: DND35E.abilityAbbreviations.cha,
+    climb: DND35E.abilityAbbreviations.str,
+    concentration: DND35E.abilityAbbreviations.con,
+}
+
+DND35E.skillArmorPenalty = {
+    appraise: false,
+    balance: true,
+    bluff: false,
+    climb: true,
+    concentration: false,
+}
+
+DND35E.skillUntrainedUse = {
+    appraise: true,
+    balance: true,
+    bluff: true,
+    climb: true,
+    concentration: true,
+}
+
+DND35E.skills = {
+    appraise: {
+        name: 'DND35E.SkillNames.Appraise',
+        ability: DND35E.abilityAbbreviations.int,
+        untrainedUse: true,
+        armorPenalty: false
+    },
+    balance: {
+        name: 'DND35E.SkillNames.Balance',
+        ability: DND35E.abilityAbbreviations.dex,
+        untrainedUse: true,
+        armorPenalty: true
+    },
+    bluff: {
+        name: 'DND35E.SkillNames.Bluff',
+        ability: DND35E.abilityAbbreviations.cha,
+        untrainedUse: true,
+        armorPenalty: false
+    },
+    climb: {
+        name: 'DND35E.SkillNames.Climb',
+        ability: DND35E.abilityAbbreviations.str,
+        untrainedUse: true,
+        armorPenalty: true
+    },
+    concentration: {
+        name: 'DND35E.SkillNames.Concentration',
+        ability: DND35E.abilityAbbreviations.con,
+        untrainedUse: true,
+        armorPenalty: false
+    }
+}

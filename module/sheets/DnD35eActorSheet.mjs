@@ -60,6 +60,7 @@ export class DnD35eActorSheet extends ActorSheet {
 
         html.on('click', '.rollable', this._onRoll.bind(this));
         html.on('click', '.initiative', this._onInitiative.bind(this));
+        html.on('click', '.alignment-field', this._onAlignmentClicked.bind(this));
     }
 
     _onInitiative(event) {
@@ -74,7 +75,7 @@ export class DnD35eActorSheet extends ActorSheet {
 
         // Handle rolls that supply the formula directly.
         if (dataset.roll) {
-            let label = dataset.label ? `[ability] ${dataset.label}` : '';
+            let label = dataset.label ? `Ability roll : ${dataset.label}` : '';
             let roll = new Roll(dataset.roll, this.actor.getRollData());
             roll.toMessage({
                 speaker: ChatMessage.getSpeaker({ actor: this.actor }),
@@ -82,6 +83,110 @@ export class DnD35eActorSheet extends ActorSheet {
                 rollMode: game.settings.get('core', 'rollMode'),
             });
             return roll;
+        }
+    }
+
+    async _onAlignmentClicked(event) {
+        event.preventDefault();
+
+        console.log(this.actor);
+
+        const template = "systems/DnD35e/templates/pop-ups/select-alignment.hbs";
+        const html = await renderTemplate(template, {});
+
+        return new Promise(resolve => {
+            const data = {
+                title: "Alignment selection",
+                content: html,
+                buttons: {
+                    ce: {
+                        label: "Chaotic-Evil",
+                        callback: html => resolve(this._processAlignment(0))
+                    },
+                    cn: {
+                        label: "Chaotic-Neutral",
+                        callback: html => resolve(this._processAlignment(1))
+                    },
+                    cg: {
+                        label: "Chaotic-Good",
+                        callback: html => resolve(this._processAlignment(2))
+                    },
+                    ne: {
+                        label: "Neutral-Evil",
+                        callback: html => resolve(this._processAlignment(3))
+                    },
+                    n: {
+                        label: "Neutral",
+                        callback: html => resolve(this._processAlignment(4))
+                    },
+                    ng: {
+                        label: "Neutral-Good",
+                        callback: html => resolve(this._processAlignment(5))
+                    },
+                    le: {
+                        label: "Lawful-Evil",
+                        callback: html => resolve(this._processAlignment(6))
+                    },
+                    ln: {
+                        label: "Lawful-Neutral",
+                        callback: html => resolve(this._processAlignment(7))
+                    },
+                    lg: {
+                        label: "Lawful-Good",
+                        callback: html => resolve(this._processAlignment(8))
+                    },
+                    cancel: {
+                        label: "Cancel",
+                        callback: html => resolve({cancelled: true})
+                    }
+                },
+                default: "n",
+                close: () => resolve({cancelled: true})
+            };
+
+            new Dialog(data, null).render(true);
+        })
+    }
+
+    _processAlignment(value) {
+
+        console.log(value);
+        switch (value) {
+            case 0:
+                this.actor.system.alignment.goodness = 0;
+                this.actor.system.alignment.lawfulness = 0;
+                break;
+            case 1:
+                this.actor.system.alignment.goodness = 1;
+                this.actor.system.alignment.lawfulness = 0;
+                break;
+            case 2:
+                this.actor.system.alignment.goodness = 2;
+                this.actor.system.alignment.lawfulness = 0;
+                break;
+            case 3:
+                this.actor.system.alignment.goodness = 0;
+                this.actor.system.alignment.lawfulness = 1;
+                break;
+            case 4:
+                this.actor.system.alignment.goodness = 1;
+                this.actor.system.alignment.lawfulness = 1;
+                break;
+            case 5:
+                this.actor.system.alignment.goodness = 2;
+                this.actor.system.alignment.lawfulness = 1;
+                break;
+            case 6:
+                this.actor.system.alignment.goodness = 0;
+                this.actor.system.alignment.lawfulness = 2;
+                break;
+            case 7:
+                this.actor.system.alignment.goodness = 1;
+                this.actor.system.alignment.lawfulness = 2;
+                break;
+            default:
+                this.actor.system.alignment.goodness = 2;
+                this.actor.system.alignment.lawfulness = 2;
         }
     }
 }

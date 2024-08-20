@@ -8,14 +8,14 @@
                 </div>
                 <div style="width: 5px"></div>
                 <div style="flex: 1 1 auto">
-                    <input class="text-field" type="text" name="system.playername" />
+                    <input class="text-field" type="text" name="system.player" value="{{system.player}}" />
                     <label class="text-field-label">{{toUpperCase (localize 'DND35E.Player')}}</label>
                 </div>
 
             </div>
             <div class="fields-row-1">
                 <div style="width: 50%; flex: 0 auto">
-                    <div class="text-field"></div>
+                    <div class="text-field">{{system.level}}</div>
                     <label class="text-field-label">{{toUpperCase (localize 'DND35E.ClassAndLevel')}}</label>
                 </div>
                 <div style="width: 5px"></div>
@@ -25,7 +25,7 @@
                 </div>
                 <div style="width: 5px"></div>
                 <div style="max-width: 16%">
-                    <input class="text-field" type="text" name="system.alignment" />
+                    <div class="text-field alignment-field">{{localize (concatenate 'DND35E.AlignmentValues.' (toAlignment system.alignment.goodness system.alignment.lawfulness))}}</div>
                     <label class="text-field-label">{{toUpperCase (localize 'DND35E.Alignment')}}</label>
                 </div>
                 <div style="width: 5px"></div>
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="logo-section">
-            <img class="dnd-logo" src="systems/Dnd35e/assets/dnd_logo.png" title="logo"/>
+            <img class="dnd-logo" src="systems/DnD35e/assets/dnd_logo.png" title="logo"/>
             <label>
                 {{toUpperCase (localize 'DND35E.SheetName')}}
             </label>
@@ -66,10 +66,10 @@
 
                 </div>
                 <div style="display: flex; align-content: center; justify-content: center;align-items: center;">
-                    <div class="initiative-label initiative" data-roll="initiative">
+                    <div class="initiative-label initiative">
                         <label class="ability-abbr">{{toUpperCase 'Initiative'}}</label>
                     </div>
-                    <span class="value-square ability-mod initiative" data-roll="initiative">{{numberFormat system.abilities.dex.mod decimals=0}}</span>
+                    <span class="value-square ability-mod initiative">{{numberFormat system.abilities.dex.mod decimals=0}}</span>
                     <div style="flex: none">
                         =
                     </div>
@@ -79,7 +79,7 @@
                     </div>
                     <span class="value-square ability-mod">0</span>
                     <div style="flex: none; width: 10px;"></div>
-                    <input class="exp-field" type="text" name="system.exp" />
+                    <input class="exp-field" type="text" name="system.xp" value="{{system.xp}}" data-dtype="Number"/>
                 </div>
             </div>
 
@@ -103,23 +103,23 @@
                 </div>
                 {{#each system.abilities as |ability key|}}
                     <div class="ability flexrow flex-group-center">
-                        <div class="ability-label rollable" data-roll="d20+@abilities.{{key}}.mod">
-                            <label for="system.abilities.{{key}}.value" class="ability-abbr" data-label="{{localize (lookup @root.config.abilityAbbreviations key)}}">{{toUpperCase (localize (lookup @root.config.abilityAbbreviations key))}}</label>
+                        <div class="ability-label rollable" data-roll="d20+@abilities.{{key}}.mod" data-label="{{localize (lookup @root.config.abilities key)}}">
+                            <label for="system.abilities.{{key}}.value" class="ability-abbr rollable">{{toUpperCase (localize (lookup @root.config.abilityAbbreviations key))}}</label>
                             <br>
-                            <label for="system.abilities.{{key}}.value" class="ability-long resource-label flexlarge align-center" data-label="{{localize (lookup @root.config.abilities key)}}">{{toUpperCase (localize (lookup @root.config.abilities key))}}</label>
+                            <label for="system.abilities.{{key}}.value" class="ability-long resource-label flexlarge align-center rollable" data-label="{{localize (lookup @root.config.abilities key)}}">{{toUpperCase (localize (lookup @root.config.abilities key))}}</label>
                         </div>
                         <input class="value-square" type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
                         <span class="value-square ability-mod rollable" data-roll="d20+@abilities.{{key}}.mod" data-label="{{localize (lookup @root.config.abilities key)}}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
                         <div class="temporary-ability">
-                            <span class="value-square ability-mod rollable" data-roll="d20+@abilities.{{key}}.mod" data-label="{{localize (lookup @root.config.abilities key)}}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
+                            <span class="value-square ability-mod rollable" data-roll="d20+@abilities.{{key}}.temp_mod" data-label="{{localize (lookup @root.config.abilities key)}}">{{numberFormat ability.temp decimals=0}}</span>
                             <div style="width: 10px; flex: none"></div>
-                            <span class="value-square ability-mod rollable" data-roll="d20+@abilities.{{key}}.mod" data-label="{{localize (lookup @root.config.abilities key)}}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
+                            <span class="value-square ability-mod rollable" data-roll="d20+@abilities.{{key}}.temp_mod" data-label="{{localize (lookup @root.config.abilities key)}}">{{numberFormat ability.temp_mod decimals=0 sign=true}}</span>
                         </div>
                     </div>
                 {{/each}}
             </div>
         </aside>
-        <div style="flex: none; width: 1px; border-right: solid black 1px; margin-left: 5px; margin-right: 5px"></div>
+        <div style="flex: none; width: 1px; border-right: solid black 1px; margin-left: 5px; margin-right: 0"></div>
         <div class="tab-section">
 
             <nav class="sheet-tabs tabs text-field-label" data-group="primary">
@@ -136,7 +136,25 @@
                     General
                 </div>
                 <div class="tab skills" data-group="primary" data-tab="skills">
-                    Skills
+                    {{#each system.skills as |skill key|}}
+                        <div class="flexrow flex-group-center">
+                            <div>
+                                <input value="{{skill.classSkill}}" type="checkbox" class="class-skill" name="system.skills.{{key}}.classSkill" data-dtype="Bool"/>
+                            </div>
+                            <div>
+                                {{toUpperCase (localize (lookup @root.config.skillNames key))}}
+                                {{#if (lookup @root.config.skillUntrainedUse key)}}
+                                    ■
+                                {{/if}}
+                            </div>
+                            <div>
+                                {{toUpperCase (localize (lookup @root.config.skillAbilities key))}}
+                                {{#if (lookup @root.config.skillArmorPenalty key)}}
+                                    *
+                                {{/if}}
+                            </div>
+                        </div>
+                    {{/each}}
                 </div>
                 <div class="tab spells" data-group="primary" data-tab="spells">
                     Spells
@@ -148,7 +166,49 @@
                     Inventory
                 </div>
                 <div class="tab description" data-group="primary" data-tab="description">
-                    Description
+                    <div style="display: flex; width: 100%">
+                        <div style="flex: 1 1 auto; max-width: 24%">
+                            <input class="text-field" type="text" name="system.size" />
+                            <label class="text-field-label">{{toUpperCase (localize 'DND35E.Size')}}</label>
+                        </div>
+                        <div style="width: 5px"></div>
+                        <div style="flex: 1 1 auto; max-width: 24%">
+                            <input class="text-field" type="text" name="system.age" />
+                            <label class="text-field-label">{{toUpperCase (localize 'DND35E.Age')}}</label>
+                        </div>
+                        <div style="width: 5px"></div>
+                        <div style="flex: 1 1 auto; max-width: 24%">
+                            <input class="text-field" type="text" name="system.gender" />
+                            <label class="text-field-label">{{toUpperCase (localize 'DND35E.Gender')}}</label>
+                        </div>
+                        <div style="width: 5px"></div>
+                        <div style="flex: 1 1 auto; max-width: 25%">
+                            <input class="text-field" type="text" name="system.height" />
+                            <label class="text-field-label">{{toUpperCase (localize 'DND35E.Height')}}</label>
+                        </div>
+                    </div>
+                    <div style="display: flex; width: 100%">
+                        <div style="flex: 1 1 auto; max-width: 24%">
+                            <input class="text-field" type="text" name="system.weight" />
+                            <label class="text-field-label">{{toUpperCase (localize 'DND35E.Weight')}}</label>
+                        </div>
+                        <div style="width: 5px"></div>
+                        <div style="flex: 1 1 auto; max-width: 24%">
+                            <input class="text-field" type="text" name="system.eyes" />
+                            <label class="text-field-label">{{toUpperCase (localize 'DND35E.Eyes')}}</label>
+                        </div>
+                        <div style="width: 5px"></div>
+                        <div style="flex: 1 1 auto; max-width: 24%">
+                            <input class="text-field" type="text" name="system.hair" />
+                            <label class="text-field-label">{{toUpperCase (localize 'DND35E.Hair')}}</label>
+                        </div>
+                        <div style="width: 5px"></div>
+                        <div style="flex: 1 1 auto; max-width: 25%">
+                            <input class="text-field" type="text" name="system.skin" />
+                            <label class="text-field-label">{{toUpperCase (localize 'DND35E.Skin')}}</label>
+                        </div>
+                    </div>
+
                 </div>
             </section>
         </div>

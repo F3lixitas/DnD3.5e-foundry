@@ -14,24 +14,52 @@
       "template": ["base"],
       "xp": 0,
       "level": 1,
+      "player": "",
+      "alignment": {
+        "goodness": 1,
+        "lawfulness": 1
+      },
       "abilities": {
         "str":{
-          "value": 10
+          "value": 10,
+          "temp": 10
         },
         "dex":{
-          "value": 10
+          "value": 10,
+          "temp": 10
         },
         "con":{
-          "value": 10
+          "value": 10,
+          "temp": 10
         },
         "wis":{
-          "value": 10
+          "value": 10,
+          "temp": 10
         },
         "int":{
-          "value": 10
+          "value": 10,
+          "temp": 10
         },
         "cha":{
-          "value": 10
+          "value": 10,
+          "temp": 10
+        }
+      },
+      "skills": {
+        "appraise": {
+          "classSkill": false
+        },
+        "balance": {
+          "classSkill": false
+        },
+        "bluff": {
+          "classSkill": false
+        },
+        "climb": {
+          "classSkill": false
+        },
+        "concentration": {
+          "classSkill": false
         }
       }
     }

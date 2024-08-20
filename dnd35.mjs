@@ -40,3 +40,34 @@ Handlebars.registerHelper('toLowerCase', function (str) {
 Handlebars.registerHelper('toUpperCase', function (str) {
     return str.toUpperCase();
 });
+Handlebars.registerHelper('concatenate', function (str1, str2) {
+    return `${str1}${str2}`;
+});
+Handlebars.registerHelper('toAlignment', function (goodness, lawfulness) {
+    if (goodness === 1 && lawfulness === 1) {
+        return "Neutral";
+    }
+    let gs = "";
+    switch (goodness) {
+        case 0:
+            gs = "Evil";
+            break;
+        case 1:
+            gs = "Neutral";
+            break;
+        default:
+            gs = "Good";
+    }
+    let ls = "";
+    switch (lawfulness) {
+        case 0:
+            ls = "Chaotic";
+            break;
+        case 1:
+            ls = "Neutral";
+            break;
+        default:
+            ls = "Lawful";
+    }
+    return `${ls}${gs}`;
+});

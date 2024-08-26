@@ -61,6 +61,17 @@ export class DnD35eActorSheet extends ActorSheet {
         html.on('click', '.rollable', this._onRoll.bind(this));
         html.on('click', '.initiative', this._onInitiative.bind(this));
         html.on('click', '.alignment-field', this._onAlignmentClicked.bind(this));
+        html.on('click', '.race-field', this._onRaceClicked.bind(this));
+    }
+
+    _onSkillRoll(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+        const dataset = element.dataset;
+
+        if (dataset.roll) {
+
+        }
     }
 
     _onInitiative(event) {
@@ -75,6 +86,16 @@ export class DnD35eActorSheet extends ActorSheet {
 
         // Handle rolls that supply the formula directly.
         if (dataset.roll) {
+            if (dataset.rollType == "skill") {
+                let label = dataset.label ? `Skill roll : ${dataset.label}` : '';
+                let roll = new Roll(dataset.roll, this.actor.getRollData());
+                roll.toMessage({
+                    speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+                    flavor: label,
+                    rollMode: game.settings.get('core', 'rollMode'),
+                });
+                return roll;
+            }
             let label = dataset.label ? `Ability roll : ${dataset.label}` : '';
             let roll = new Roll(dataset.roll, this.actor.getRollData());
             roll.toMessage({
@@ -146,6 +167,62 @@ export class DnD35eActorSheet extends ActorSheet {
 
             new Dialog(data, null).render(true);
         })
+    }
+
+    async _onRaceClicked(event) {
+        event.preventDefault();
+
+        const template = "systems/DnD35e/templates/pop-ups/select-alignment.hbs";
+        const html = await renderTemplate(template, {});
+
+        return new Promise(resolve => {
+            const data = {
+                title: "Race selection",
+                content: html,
+                buttons: {
+                    human: {
+                        label: "Human",
+                        callback: html => resolve(this._processRace(1))
+                    },
+                    dwarf: {
+                        label: "Dwarf",
+                        callback: html => resolve(this._processRace(2))
+                    },
+                    elf: {
+                        label: "Elf",
+                        callback: html => resolve(this._processRace(3))
+                    },
+                    gnome: {
+                        label: "Gnome",
+                        callback: html => resolve(this._processRace(4))
+                    },
+                    halfElf: {
+                        label: "Half-Elf",
+                        callback: html => resolve(this._processRace(5))
+                    },
+                    halfOrc: {
+                        label: "Half-Orc",
+                        callback: html => resolve(this._processRace(6))
+                    },
+                    halfling: {
+                        label: "Halfling",
+                        callback: html => resolve(this._processRace(7))
+                    },
+                    cancel: {
+                        label: "Cancel",
+                        callback: html => resolve({cancelled: true})
+                    }
+                },
+                default: "human",
+                close: () => resolve({cancelled: true})
+            };
+
+            new Dialog(data, null).render(true);
+        })
+    }
+
+    _processRace(value) {
+        this.actor.update({system: {race: value}});
     }
 
     _processAlignment(value) {

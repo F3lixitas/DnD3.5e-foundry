@@ -13,6 +13,4 @@ export class SystemActor extends Actor {
 
         return result;
     }
-
-
 }

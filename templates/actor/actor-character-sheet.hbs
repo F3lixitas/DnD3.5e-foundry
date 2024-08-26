@@ -20,7 +20,7 @@
                 </div>
                 <div style="width: 5px"></div>
                 <div style="flex: 1 1 auto">
-                    <div class="text-field"></div>
+                    <div class="text-field race-field">{{localize (lookup @root.config.races system.raceLabel)}}</div>
                     <label class="text-field-label">{{toUpperCase (localize 'DND35E.Race')}}</label>
                 </div>
                 <div style="width: 5px"></div>
@@ -141,13 +141,13 @@
                             <div>
                                 <input value="{{skill.classSkill}}" type="checkbox" class="class-skill" name="system.skills.{{key}}.classSkill" {{checked skill.classSkill}} data-dtype="Boolean"/>
                             </div>
-                            <div>
+                            <div class="rollable" data-roll="d20+@skills.{{key}}.mod" data-roll-type="skill" data-label="{{localize (lookup @root.config.skillNames key)}}" style="text-align: left; flex: none; width: 150px">
                                 {{toUpperCase (localize (lookup @root.config.skillNames key))}}
                                 {{#if (lookup @root.config.skillUntrainedUse key)}}
                                     ■
                                 {{/if}}
                             </div>
-                            <div>
+                            <div style="text-align: left">
                                 {{toUpperCase (localize (lookup @root.config.abilityAbbreviations (lookup @root.config.skillAbilities key)))}}
                                 {{#if (lookup @root.config.skillArmorPenalty key)}}
                                     *
@@ -155,6 +155,24 @@
                             </div>
                             <div>
                                 {{numberFormat skill.mod  decimals=0 sign=true}}
+                            </div>
+                            <div style="width: 30px; flex: none">
+                                =
+                            </div>
+                            <div style="width: 30px; flex: none">
+                                {{skill.abilityMod}}
+                            </div>
+                            <div style="width: 30px; flex: none">
+                                +
+                            </div>
+                            <div style="width: 30px; flex: none">
+                                {{skill.rank}}
+                            </div>
+                            <div style="width: 30px; flex: none">
+                                +
+                            </div>
+                            <div style="width: 30px; flex: none">
+                                {{skill.miscMod}}
                             </div>
                         </div>
                     {{/each}}
@@ -176,38 +194,38 @@
                         </div>
                         <div style="width: 5px"></div>
                         <div style="flex: 1 1 auto; max-width: 24%">
-                            <input class="text-field" type="text" name="system.age" />
+                            <input class="text-field" type="text" name="system.description.age" value="{{system.description.age}}" data-dtype="Number" />
                             <label class="text-field-label">{{toUpperCase (localize 'DND35E.Age')}}</label>
                         </div>
                         <div style="width: 5px"></div>
                         <div style="flex: 1 1 auto; max-width: 24%">
-                            <input class="text-field" type="text" name="system.gender" />
+                            <input class="text-field" type="text" name="system.description.gender" value="{{system.description.gender}}" data-dtype="String" />
                             <label class="text-field-label">{{toUpperCase (localize 'DND35E.Gender')}}</label>
                         </div>
                         <div style="width: 5px"></div>
                         <div style="flex: 1 1 auto; max-width: 25%">
-                            <input class="text-field" type="text" name="system.height" />
+                            <input class="text-field" type="text" name="system.description.size" value="{{system.description.size}}" data-dtype="String" />
                             <label class="text-field-label">{{toUpperCase (localize 'DND35E.Height')}}</label>
                         </div>
                     </div>
                     <div style="display: flex; width: 100%">
                         <div style="flex: 1 1 auto; max-width: 24%">
-                            <input class="text-field" type="text" name="system.weight" />
+                            <input class="text-field" type="text" name="system.description.weight" value="{{system.description.weight}}" data-dtype="String" />
                             <label class="text-field-label">{{toUpperCase (localize 'DND35E.Weight')}}</label>
                         </div>
                         <div style="width: 5px"></div>
                         <div style="flex: 1 1 auto; max-width: 24%">
-                            <input class="text-field" type="text" name="system.eyes" />
+                            <input class="text-field" type="text" name="system.description.eyes" value="{{system.description.eyes}}" data-dtype="String" />
                             <label class="text-field-label">{{toUpperCase (localize 'DND35E.Eyes')}}</label>
                         </div>
                         <div style="width: 5px"></div>
                         <div style="flex: 1 1 auto; max-width: 24%">
-                            <input class="text-field" type="text" name="system.hair" />
+                            <input class="text-field" type="text" name="system.description.hair" value="{{system.description.hair}}" data-dtype="String" />
                             <label class="text-field-label">{{toUpperCase (localize 'DND35E.Hair')}}</label>
                         </div>
                         <div style="width: 5px"></div>
                         <div style="flex: 1 1 auto; max-width: 25%">
-                            <input class="text-field" type="text" name="system.skin" />
+                            <input class="text-field" type="text" name="system.description.skin" value="{{system.description.skin}}" data-dtype="String" />
                             <label class="text-field-label">{{toUpperCase (localize 'DND35E.Skin')}}</label>
                         </div>
                     </div>

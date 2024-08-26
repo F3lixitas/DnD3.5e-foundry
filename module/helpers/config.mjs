@@ -27,6 +27,31 @@ DND35E.tabnames = {
     description: 'DND35E.TabName.Description'
 };
 
+DND35E.classes = {
+    barbarian: 'DND35E.Classes.Barbarian',
+    bard: 'DND35E.Classes.Bard',
+    cleric: 'DND35E.Classes.Cleric',
+    druid: 'DND35E.Classes.Druid',
+    fighter: 'DND35E.Classes.Fighter',
+    monk: 'DND35E.Classes.Monk',
+    paladin: 'DND35E.Classes.Paladin',
+    ranger: 'DND35E.Classes.Ranger',
+    rogue: 'DND35E.Classes.Rogue',
+    sorcerer: 'DND35E.Classes.Sorcerer',
+    wizard: 'DND35E.Classes.Wizard'
+}
+
+DND35E.races = {
+    noRace: "DND35E.RaceNames.NoRace",
+    human: "DND35E.RaceNames.Human",
+    dwarf: "DND35E.RaceNames.Dwarf",
+    elf: "DND35E.RaceNames.Elf",
+    gnome: "DND35E.RaceNames.Gnome",
+    halfElf: "DND35E.RaceNames.HalfElf",
+    halfOrc: "DND35E.RaceNames.HalfOrc",
+    halfling: "DND35E.RaceNames.Halfling"
+}
+
 DND35E.skillNames = {
     appraise: 'DND35E.SkillNames.Appraise',
     balance: 'DND35E.SkillNames.Balance',

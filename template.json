@@ -47,21 +47,94 @@
       },
       "skills": {
         "appraise": {
-          "classSkill": false
+          "classSkill": false,
+          "rank": 0
         },
         "balance": {
-          "classSkill": false
+          "classSkill": false,
+          "rank": 0
         },
         "bluff": {
-          "classSkill": false
+          "classSkill": false,
+          "rank": 0
         },
         "climb": {
-          "classSkill": false
+          "classSkill": false,
+          "rank": 0
         },
         "concentration": {
-          "classSkill": false
+          "classSkill": false,
+          "rank": 0
         }
+      },
+      "classes": {
+        "barbarian": {
+          "active": false,
+          "level": 0
+        },
+        "bard": {
+          "active": false,
+          "level": 0
+        },
+        "cleric": {
+          "active": false,
+          "level": 0
+        },
+        "druid": {
+          "active": false,
+          "level": 0
+        },
+        "fighter": {
+          "active": false,
+          "level": 0
+        },
+        "monk": {
+          "active": false,
+          "level": 0
+        },
+        "paladin": {
+          "active": false,
+          "level": 0
+        },
+        "ranger": {
+          "active": false,
+          "level": 0
+        },
+        "rogue": {
+          "active": false,
+          "level": 0
+        },
+        "sorcerer": {
+          "active": false,
+          "level": 0
+        },
+        "wizard": {
+          "active": false,
+          "level": 0
+        }
+      },
+      "race": 0,
+      "description": {
+        "age": 0,
+        "gender": "",
+        "size": "",
+        "weight": "",
+        "eyes": "",
+        "hair": "",
+        "skin": ""
       }
+    }
+  },
+  "Item": {
+    "types": ["class"],
+    "templates": {
+      "base": {
+        "name": "",
+        "description": ""
+      }
+    },
+    "class": {
+      "template": ["base"]
     }
   }
 }

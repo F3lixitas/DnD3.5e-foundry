@@ -63,6 +63,16 @@
       "Bluff": "Bluff",
       "Climb": "Escalade",
       "Concentration": "Concentration"
+    },
+    "RaceNames": {
+      "NoRace": "Pas De Race",
+      "Human": "Humain",
+      "Dwarf": "Nain",
+      "Elf": "Elfe",
+      "Gnome": "Gnome",
+      "HalfElf": "Demi-Elfe",
+      "HalfOrc": "Demi-Orque",
+      "Halfling": "Halfelin"
     }
   },
 

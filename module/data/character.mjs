@@ -27,6 +27,17 @@ const exp_threshold_table = [
     190000
 ]
 
+const race_lookup = [
+    "noRace",
+    "human",
+    "dwarf",
+    "elf",
+    "gnome",
+    "halfElf",
+    "halfOrc",
+    "halfling"
+]
+
 export class CharacterData extends ActorData {
     static defineSchema() {
         const schema = super.defineSchema();
@@ -47,9 +58,28 @@ export class CharacterData extends ActorData {
         schema.skills = new SchemaField(Object.keys(CONFIG.DND35E.skills).reduce((obj, skill) => {
             obj[skill] = new SchemaField({
                 classSkill: new BooleanField({required: true, initial: false}),
+                rank: new NumberField({required: true, initial: 0})
             });
             return obj;
         }, {}));
+        schema.classes = new SchemaField(Object.keys(CONFIG.DND35E.classes).reduce((obj, skill) => {
+            obj[skill] = new SchemaField({
+                active: new BooleanField({required: true, initial: false}),
+                level: new NumberField({required: true, integer: true, initial: 0}),
+            });
+            return obj;
+        }, {}));
+        schema.race = new NumberField({required: true, integer: true, initial: 0});
+
+        schema.description = new SchemaField({
+            age: new NumberField({required: true, integer: true, initial: 0}),
+            gender: new StringField({required: true, initial: ""}),
+            size: new StringField({required: true, initial: ""}),
+            weight: new StringField({required: true, initial: ""}),
+            eyes: new StringField({required: true, initial: ""}),
+            hair: new StringField({required: true, initial: ""}),
+            skin: new StringField({required: true, initial: ""}),
+        })
         return schema;
     }
 
@@ -75,8 +105,12 @@ export class CharacterData extends ActorData {
         }
 
         for(const key in this.skills) {
-            this.skills[key].mod = this.abilities[CONFIG.DND35E.skillAbilities[key]].mod;
+            this.skills[key].mod = this.abilities[CONFIG.DND35E.skillAbilities[key]].mod + this.skills[key].rank + 0; // add misc mods
+            this.skills[key].abilityMod = this.abilities[CONFIG.DND35E.skillAbilities[key]].mod;
+            this.skills[key].miscMod = 0; // unimplemented
         }
+
+        this.raceLabel = race_lookup[this.race];
     }
 
     getRollData() {
@@ -90,10 +124,14 @@ export class CharacterData extends ActorData {
             }
         }
 
+        if (this.skills) {
+            for (let [k,v] of Object.entries(this.skills)) {
+                data[k] = foundry.utils.deepClone(v);
+            }
+        }
+
         data.lvl = this.level;
 
         return data
     }
-
-
 }

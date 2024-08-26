@@ -153,40 +153,31 @@ export class DnD35eActorSheet extends ActorSheet {
         console.log(value);
         switch (value) {
             case 0:
-                this.actor.system.alignment.goodness = 0;
-                this.actor.system.alignment.lawfulness = 0;
+                this.actor.update({system: {alignment: {goodness: 0, lawfulness: 0}}});
                 break;
             case 1:
-                this.actor.system.alignment.goodness = 1;
-                this.actor.system.alignment.lawfulness = 0;
+                this.actor.update({system: {alignment: {goodness: 1, lawfulness: 0}}});
                 break;
             case 2:
-                this.actor.system.alignment.goodness = 2;
-                this.actor.system.alignment.lawfulness = 0;
+                this.actor.update({system: {alignment: {goodness: 2, lawfulness: 0}}});
                 break;
             case 3:
-                this.actor.system.alignment.goodness = 0;
-                this.actor.system.alignment.lawfulness = 1;
+                this.actor.update({system: {alignment: {goodness: 0, lawfulness: 1}}});
                 break;
             case 4:
-                this.actor.system.alignment.goodness = 1;
-                this.actor.system.alignment.lawfulness = 1;
+                this.actor.update({system: {alignment: {goodness: 1, lawfulness: 1}}});
                 break;
             case 5:
-                this.actor.system.alignment.goodness = 2;
-                this.actor.system.alignment.lawfulness = 1;
+                this.actor.update({system: {alignment: {goodness: 2, lawfulness: 1}}});
                 break;
             case 6:
-                this.actor.system.alignment.goodness = 0;
-                this.actor.system.alignment.lawfulness = 2;
+                this.actor.update({system: {alignment: {goodness: 0, lawfulness: 2}}});
                 break;
             case 7:
-                this.actor.system.alignment.goodness = 1;
-                this.actor.system.alignment.lawfulness = 2;
+                this.actor.update({system: {alignment: {goodness: 1, lawfulness: 2}}});
                 break;
             default:
-                this.actor.system.alignment.goodness = 2;
-                this.actor.system.alignment.lawfulness = 2;
+                this.actor.update({system: {alignment: {goodness: 2, lawfulness: 2}}});
         }
     }
 }

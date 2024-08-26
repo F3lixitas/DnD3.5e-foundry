@@ -139,7 +139,7 @@
                     {{#each system.skills as |skill key|}}
                         <div class="flexrow flex-group-center">
                             <div>
-                                <input value="{{skill.classSkill}}" type="checkbox" class="class-skill" name="system.skills.{{key}}.classSkill" data-dtype="Bool"/>
+                                <input value="{{skill.classSkill}}" type="checkbox" class="class-skill" name="system.skills.{{key}}.classSkill" {{checked skill.classSkill}} data-dtype="Boolean"/>
                             </div>
                             <div>
                                 {{toUpperCase (localize (lookup @root.config.skillNames key))}}
@@ -148,10 +148,13 @@
                                 {{/if}}
                             </div>
                             <div>
-                                {{toUpperCase (localize (lookup @root.config.skillAbilities key))}}
+                                {{toUpperCase (localize (lookup @root.config.abilityAbbreviations (lookup @root.config.skillAbilities key)))}}
                                 {{#if (lookup @root.config.skillArmorPenalty key)}}
                                     *
                                 {{/if}}
+                            </div>
+                            <div>
+                                {{numberFormat skill.mod  decimals=0 sign=true}}
                             </div>
                         </div>
                     {{/each}}

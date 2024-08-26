@@ -73,6 +73,10 @@ export class CharacterData extends ActorData {
             this.abilities[key].temp_mod = Math.floor((this.abilities[key].temp - 10) / 2);
             this.abilities[key].label = game.i18n.localize(CONFIG.DND35E.abilities[key]) ?? key;
         }
+
+        for(const key in this.skills) {
+            this.skills[key].mod = this.abilities[CONFIG.DND35E.skillAbilities[key]].mod;
+        }
     }
 
     getRollData() {

@@ -36,11 +36,11 @@ DND35E.skillNames = {
 }
 
 DND35E.skillAbilities = {
-    appraise: DND35E.abilityAbbreviations.int,
-    balance: DND35E.abilityAbbreviations.dex,
-    bluff: DND35E.abilityAbbreviations.cha,
-    climb: DND35E.abilityAbbreviations.str,
-    concentration: DND35E.abilityAbbreviations.con,
+    appraise: 'int',
+    balance: 'dex',
+    bluff: 'cha',
+    climb: 'str',
+    concentration: 'con',
 }
 
 DND35E.skillArmorPenalty = {

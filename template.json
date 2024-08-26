@@ -65,6 +65,118 @@
         "concentration": {
           "classSkill": false,
           "rank": 0
+        },
+        "craft": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "decipherScript": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "diplomacy": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "disableDevice": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "disguise": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "escapeArtist": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "forgery": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "gatherInformation": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "handleAnimal": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "heal": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "hide": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "intimidate": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "jump": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "knowledge": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "moveSilently": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "openLock": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "perform": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "profession": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "ride": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "search": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "senseMotive": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "sleightOfHand": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "spot": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "survival": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "swim": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "tumble": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "useMagicDevice": {
+          "classSkill": false,
+          "rank": 0
+        },
+        "useRope": {
+          "classSkill": false,
+          "rank": 0
         }
       },
       "classes": {

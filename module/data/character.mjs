@@ -86,6 +86,37 @@ export class CharacterData extends ActorData {
     prepareDerivedData() {
         super.prepareDerivedData();
 
+        this.raceLabel = race_lookup[this.race];
+
+        switch (this.race) {
+            case 1:
+                this._prepareHuman()
+                break;
+            case 2:
+                this._prepareDwarf()
+                break;
+            case 3:
+                this._prepareElf()
+                break;
+            case 4:
+                this._prepareGnomes()
+                break;
+            case 5:
+                this._prepareHalfElf()
+                break;
+            case 6:
+                this._prepareHalfOrc()
+                break;
+            case 7:
+                this._prepareHalfling()
+                break;
+            default:
+                this.sizeCategory = 'M';
+                this.baseSpeed = 30;
+                this.raceSkillModifiers = {};
+                break;
+        }
+
         // Derive level from XP.
         for(let i = 0; i < 20; i++) {
             if(exp_threshold_table[i] > this.xp) {
@@ -105,12 +136,19 @@ export class CharacterData extends ActorData {
         }
 
         for(const key in this.skills) {
-            this.skills[key].mod = this.abilities[CONFIG.DND35E.skillAbilities[key]].mod + this.skills[key].rank + 0; // add misc mods
+            this.skills[key].miscMod = 0;
+            if(this.sizeCategory === 'S' && key === 'hide') {
+                this.skills[key].miscMod += 4;
+            }
+            if(this.raceSkillModifiers[key]) {
+                this.skills[key].miscMod += this.raceSkillModifiers[key];
+            }
+
+            this.skills[key].mod = this.abilities[CONFIG.DND35E.skillAbilities[key]].mod + this.skills[key].rank + this.skills[key].miscMod;
             this.skills[key].abilityMod = this.abilities[CONFIG.DND35E.skillAbilities[key]].mod;
-            this.skills[key].miscMod = 0; // unimplemented
         }
 
-        this.raceLabel = race_lookup[this.race];
+
     }
 
     getRollData() {
@@ -133,5 +171,59 @@ export class CharacterData extends ActorData {
         data.lvl = this.level;
 
         return data
+    }
+
+    _prepareHuman() {
+        this.sizeCategory = 'M';
+        this.baseSpeed = 30;
+        this.raceSkillModifiers = {};
+    }
+    _prepareDwarf() {
+        this.sizeCategory = 'M';
+        this.baseSpeed = 20;
+        this.raceSkillModifiers = {
+
+        };
+    }
+    _prepareElf() {
+        this.sizeCategory = 'M';
+        this.baseSpeed = 30;
+        this.raceSkillModifiers = {
+            listen: 2,
+            search: 2,
+            spot: 2
+        };
+    }
+    _prepareGnomes() {
+        this.sizeCategory = 'S';
+        this.baseSpeed = 20;
+        this.raceSkillModifiers = {
+            listen: 2
+        };
+    }
+    _prepareHalfElf() {
+        this.sizeCategory = 'M';
+        this.baseSpeed = 30;
+        this.raceSkillModifiers = {
+            listen: 1,
+            search: 1,
+            spot: 1,
+            diplomacy: 2,
+            gatherInformation: 2
+        };
+    }
+    _prepareHalfOrc() {
+        this.sizeCategory = 'M';
+        this.baseSpeed = 30;
+    }
+    _prepareHalfling() {
+        this.sizeCategory = 'S';
+        this.baseSpeed = 20;
+        this.raceSkillModifiers = {
+            climb: 2,
+            jump: 2,
+            moveSilently: 2,
+            listen: 2
+        };
     }
 }

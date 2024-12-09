@@ -2,6 +2,7 @@
 
 .window-app {
     font-family: "Ubuntu", sans-serif;
+    min-width: 700px;
 }
 
 .dnd35e .window-content {
@@ -317,6 +318,28 @@ input[type="text"]:focus {
     background-color: #D0D0D0;
 }
 
+input[type="checkbox"] {
+    display: grid;
+    border-radius: 0;
+    box-shadow: none;
+    appearance: none;
+    background-color: white;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    box-shadow: inset 1em 1em black;
+    transform: scale(0);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(0.8);
+}
+
+input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+
 .dnd35e .alignment-field:hover {
     cursor: pointer;
 }
@@ -327,4 +350,11 @@ input[type="text"]:focus {
 
 .dnd35e .skill-roll:hover {
     cursor: pointer;
+}
+
+.dnd35e .class-skill {
+    width: 15px;
+    height: 15px;
+    border: 1px solid black;
+    border-radius: 0;
 }

@@ -14,6 +14,11 @@
 
             </div>
             <div class="fields-row-1">
+                <div style="position: absolute; right: 50%; top: 80px; padding-right: 100px">
+                    <button disabled hidden="hidden">
+                        Level Up
+                    </button>
+                </div>
                 <div style="width: 50%; flex: 0 auto">
                     <div class="text-field">{{system.level}}</div>
                     <label class="text-field-label">{{toUpperCase (localize 'DND35E.ClassAndLevel')}}</label>
@@ -136,24 +141,49 @@
                     General
                 </div>
                 <div class="tab skills" data-group="primary" data-tab="skills">
+                    <div class="flexrow flex-group-center">
+                        <div style="flex: none; width: 30px; text-align: center; font-size: 65%;">
+                            Class Skill
+                        </div>
+                        <div style="width: 45px; text-align: center; font-size: 65%;">
+                            Skill Name
+                        </div>
+                        <div style="width: 45px; text-align: center; font-size: 65%;">
+                            Key Ability
+                        </div>
+                        <div style="flex: none; width: 60px; text-align: center; font-size: 65%;">
+                            Skill Modifier
+                        </div>
+                        <div style="flex: none; width: 60px; text-align: center; font-size: 65%;">
+                            Ability Modifier
+                        </div>
+                        <div style="flex: none; width: 60px; text-align: center; font-size: 65%;">
+                            Ranks
+                        </div>
+                        <div style="flex: none; width: 60px; text-align: center; font-size: 65%;">
+                            Misc Modifier
+                        </div>
+                        <div style="flex: none; width: 15px">
+                        </div>
+                    </div>
                     {{#each system.skills as |skill key|}}
                         <div class="flexrow flex-group-center">
-                            <div>
+                            <div style="width: 30px; flex: none">
                                 <input value="{{skill.classSkill}}" type="checkbox" class="class-skill" name="system.skills.{{key}}.classSkill" {{checked skill.classSkill}} data-dtype="Boolean"/>
                             </div>
-                            <div class="rollable" data-roll="d20+@skills.{{key}}.mod" data-roll-type="skill" data-label="{{localize (lookup @root.config.skillNames key)}}" style="text-align: left; flex: none; width: 150px">
+                            <div class="rollable" data-roll="d20+@skills.{{key}}.mod" data-roll-type="skill" data-label="{{localize (lookup @root.config.skillNames key)}}" style="text-align: left">
                                 {{toUpperCase (localize (lookup @root.config.skillNames key))}}
                                 {{#if (lookup @root.config.skillUntrainedUse key)}}
                                     ■
                                 {{/if}}
                             </div>
-                            <div style="text-align: left">
+                            <div style="width: 50px; flex: none; text-align: left">
                                 {{toUpperCase (localize (lookup @root.config.abilityAbbreviations (lookup @root.config.skillAbilities key)))}}
                                 {{#if (lookup @root.config.skillArmorPenalty key)}}
                                     *
                                 {{/if}}
                             </div>
-                            <div>
+                            <div style="width: 30px; flex: none">
                                 {{numberFormat skill.mod  decimals=0 sign=true}}
                             </div>
                             <div style="width: 30px; flex: none">
@@ -173,6 +203,9 @@
                             </div>
                             <div style="width: 30px; flex: none">
                                 {{skill.miscMod}}
+                            </div>
+                            <div style="width: 30px; flex: none">
+
                             </div>
                         </div>
                     {{/each}}
@@ -228,6 +261,7 @@
                             <input class="text-field" type="text" name="system.description.skin" value="{{system.description.skin}}" data-dtype="String" />
                             <label class="text-field-label">{{toUpperCase (localize 'DND35E.Skin')}}</label>
                         </div>
+
                     </div>
 
                 </div>

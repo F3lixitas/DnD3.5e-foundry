@@ -226,4 +226,5 @@ export class CharacterData extends ActorData {
             listen: 2
         };
     }
+
 }

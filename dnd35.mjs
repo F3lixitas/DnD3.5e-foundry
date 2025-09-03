@@ -3,8 +3,9 @@ import {SystemItem} from "./module/item/entity.mjs";
 // import {SystemItem} from "./module/item/entity.mjs";
 import {CharacterData} from "./module/data/character.mjs";
 import {DnD35eActorSheet} from "./module/sheets/DnD35eActorSheet.mjs";
+import {DnD35eItemSheet} from "./module/sheets/DnD35eItemSheet.mjs";
 import {DND35E} from "./module/helpers/config.mjs";
-import {Class} from "./module/data/class.mjs";
+import {ClassData} from "./module/data/class.mjs";
 // import {preloadHandlebarsTemplates} from "./module/helpers/templates.mjs";
 
 
@@ -30,13 +31,19 @@ Hooks.once("init", () => {
     };
 
     CONFIG.Item.dataModels = {
-        class: Class
+        class: ClassData
     };
 
     Actors.unregisterSheet('core', ActorSheet);
     Actors.registerSheet('DnD35e', DnD35eActorSheet, {
         makeDefault: true,
         label: 'DND35E.SheetLabels.Actor',
+    });
+
+    Items.unregisterSheet('core', ItemSheet);
+    Items.registerSheet('DnD35e', DnD35eItemSheet, {
+        makeDefault: true,
+        label: 'DND35E.SheetLabels.Item',
     });
 
     // return preloadHandlebarsTemplates();

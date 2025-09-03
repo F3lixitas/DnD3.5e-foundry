@@ -26,6 +26,31 @@
       "path": "lang/fr.json"
     }
   ],
+  "packs": [
+    {
+      "name": "classes",
+      "label": "Classes",
+      "type": "Item",
+      "flags": {
+        "DnD35e": {
+          "types": ["class"]
+        }
+      }
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "SRD",
+      "folders": [
+        {
+          "name": "Character",
+          "packs": [
+            "classes"
+          ]
+        }
+      ]
+    }
+  ],
   "download": "https://github.com/F3lixitas/DnD3.5e-foundry/releases/download/release/release.zip",
   "manifest": "https://github.com/F3lixitas/DnD3.5e-foundry/releases/download/release/system.json"
 }

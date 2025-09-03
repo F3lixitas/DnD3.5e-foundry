@@ -257,4 +257,21 @@ export class DnD35eActorSheet extends ActorSheet {
                 this.actor.update({system: {alignment: {goodness: 2, lawfulness: 2}}});
         }
     }
+
+    async _onDropItem(event, data) {
+        event.preventDefault();
+        if (!this.actor.isOwner) return false;
+
+        let item = await Item.implementation.fromDropData(data);
+        let itemData = item.toObject();
+
+        let actor = this.actor;
+
+        if (itemData.type == "class") {
+
+        }
+
+
+
+    }
 }

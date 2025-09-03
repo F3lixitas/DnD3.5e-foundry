@@ -1,0 +1,10 @@
+{
+  "name": "DnD35e",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node ./packs/package.mjs"
+  },
+  "dependencies": {
+    "@foundryvtt/foundryvtt-cli": "^1.0.3"
+  }
+}

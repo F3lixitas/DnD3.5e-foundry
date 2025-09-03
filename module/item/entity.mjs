@@ -8,6 +8,7 @@ export class SystemItem extends Item {
     }
 
     toPlainObject() {
-        return {...this}
+        return {...this};
     }
+
 }

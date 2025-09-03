@@ -13,4 +13,9 @@ export class ItemData extends foundry.abstract.TypeDataModel {
     toPlainObject() {
         return {...this};
     }
+
+    static mergeSchema(a, b) {
+        Object.assign(a, b);
+        return a;
+    }
 }
